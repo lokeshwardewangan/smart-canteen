@@ -1,5 +1,5 @@
 import React from 'react'
-import { print } from 'react-html2pdf';
+import html2pdf from 'html2pdf.js';
 export default function FoodTable({realFood,orderArray}) {
     let total=0;
    
@@ -48,7 +48,7 @@ export default function FoodTable({realFood,orderArray}) {
 </table>
  </div>
 <div className="report-print-bar">
-<button className="report-print-btn" onClick={()=>print('Report', 'jsx-template')}><i className="fa-solid fa-download"></i> Download PDF</button>
+<button className="report-print-btn" onClick={()=>html2pdf().from(document.getElementById('jsx-template')).save('Report.pdf')}><i className="fa-solid fa-download"></i> Download PDF</button>
 </div>
     </>
   )
