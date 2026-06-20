@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {QrReader} from 'react-qr-reader';
+import { Scanner as QrScanner } from '@yudiel/react-qr-scanner';
 import axios from 'axios'
 import { expireQr, getOrderThroughQr } from '../utils/APIRoutes';
 import { useNavigate } from 'react-router-dom';
@@ -14,13 +14,10 @@ const Test = () => {
       navigate("/")
      }
   },[])
-  
-  const handleScan = async(data) => {
-    console.log("tiger")
-    if (data&&isCameraOn) {
-      console.log(data.text)
-      const order = await axios.post(getOrderThroughQr,{qrId:data.text})
-      console.log(order.data[0]);
+
+  const handleScan = async(text) => {
+    if (text && isCameraOn) {
+      const order = await axios.post(getOrderThroughQr,{qrId:text})
       if(order.data.length>0){
         setResult(order.data[0]);
       }else{
@@ -60,12 +57,14 @@ const Test = () => {
         <div onClick={()=>{setIsCameraOn(false);navigate("/")}} style={{display:"flex",cursor:"pointer",justifyContent:'center',alignItems:"center" ,width:"50px",height:"50px",borderRadius:"50%",backgroundColor:'#3d3939',position:"absolute",top:"10px",left:'10px',zIndex:4}}>
         <i style={{fontSize:"23px",fontWeight:"bold",color:"white"}} class="fa-solid fa-arrow-left"></i>
         </div>
-       <QrReader
-        delay={3000}
+       <QrScanner
+        onScan={(detected) => {
+          if (detected && detected.length > 0 && detected[0]?.rawValue) {
+            handleScan(detected[0].rawValue);
+          }
+        }}
         onError={handleError}
-        onScan={handleScan}
-        onResult={(result) => handleScan(result)} // Add this line
-        style={{ height: '100%',width:"100%" }}
+        styles={{ container: { height: '100%', width: '100%' } }}
       />
     </div>
   </div>

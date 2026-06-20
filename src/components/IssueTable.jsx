@@ -1,5 +1,5 @@
 import React from 'react'
-import {print} from 'react-html2pdf'
+import html2pdf from 'html2pdf.js';
 export default function IssueTable({issueItem,index}) {
     console.log(issueItem);
   return (
@@ -45,7 +45,7 @@ export default function IssueTable({issueItem,index}) {
  </div>
  </div>
  <button style={{margin:"10px",position:'relative',left:'13vw',padding:'0px 8px',fontSize:"20px",border:"1px solid black"
-,borderRadius:"5px",backgroundColor:"var(--primary)"}} className="mx-4" onClick={()=>print("stockIssueReport",`jsx-template${index}`)}>print</button>
+,borderRadius:"5px",backgroundColor:"var(--primary)"}} className="mx-4" onClick={()=>html2pdf().from(document.getElementById(`jsx-template${index}`)).save("stockIssueReport.pdf")}>print</button>
  <hr />
  </>
 
