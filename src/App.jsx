@@ -1,27 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import {BrowserRouter as Router,Routes,Route,
 } from "react-router-dom";
-import Addfood from "./pages/Addfood";
-import Home from "./pages/Home";
-import Message from "./pages/Message";
-import Updatefood from "./pages/Updatefood";
 import Navbar from "./components/Navbar";
 import FoodState from "./context/foods/FoodState";
-import Usermsg from "./pages/Usermsg";
-// import Paymentsucess from "./pages/Paymentsucess"
-import Report from "./pages/Report";
-import StockEntry from "./pages/StockEntry";
-import StockIssue from "./pages/StockIssue";
 import { useState } from "react";
 import axios from "axios";
 import { createCoin, getCoin } from "./utils/APIRoutes";
-import StockReport from "./pages/StockReport";
-import Scanner from "./pages/Scanner";
-import AddToCard from "./pages/AddToCard";
-import Timmer from "./pages/Timmer";
-import FoodReview from "./pages/FoodReview";
-import OrderHistory from "./pages/OrderHistory";
 import { useAuth0 } from "@auth0/auth0-react";
+
+const Home = lazy(() => import("./pages/Home"));
+const Addfood = lazy(() => import("./pages/Addfood"));
+const Updatefood = lazy(() => import("./pages/Updatefood"));
+const Scanner = lazy(() => import("./pages/Scanner"));
+const Usermsg = lazy(() => import("./pages/Usermsg"));
+const Report = lazy(() => import("./pages/Report"));
+const AddToCard = lazy(() => import("./pages/AddToCard"));
+const FoodReview = lazy(() => import("./pages/FoodReview"));
+const OrderHistory = lazy(() => import("./pages/OrderHistory"));
+const StockEntry = lazy(() => import("./pages/StockEntry"));
+const StockIssue = lazy(() => import("./pages/StockIssue"));
+const StockReport = lazy(() => import("./pages/StockReport"));
+const Timmer = lazy(() => import("./pages/Timmer"));
 // https://canteenfrontend-nwpn.onrender.com
 function App() {
   const { loginWithRedirect,logout,user,isAuthenticated } = useAuth0();
@@ -81,23 +80,23 @@ function App() {
 
 
      {/* <div className="container"> */}
+        <Suspense fallback={<div style={{padding:"40px",textAlign:"center"}}>Loading...</div>}>
         <Routes>
-          <Route exact path="/" element={<Home showDownload={showDownload} setShowDownload={setShowDownload} />}></Route>
-          <Route exact path="/addfood" element={<Addfood/>} ></Route>
-          <Route exact path="/updatefood" element={<Updatefood  />} ></Route>
-          {/* <Route exact path="/message" element={<Message socket={socket} />} ></Route> */}
-          <Route exact path="/scanner" element={<Scanner featchCoin={featchCoin} setpopup={setpopup} />} ></Route>
-          <Route exact path="/message" element={<Usermsg featchCoin={featchCoin} setpopup={setpopup} />} ></Route>
-          <Route exact path="/foodreport" element={<Report  />} ></Route>
-          <Route exact path="/card" element={<AddToCard  />} ></Route>
-          <Route exact path="/foodreview" element={<FoodReview  />} ></Route>
-          <Route exact path="/orderhistory" element={<OrderHistory  />} ></Route>
-          {/* <Route exact path="/paymentsuccess" element={<Paymentsucess />} ></Route> */}
-          <Route exact path="/stockentry" element={<StockEntry/>}></Route>
-          <Route exact path="/stockissue" element={<StockIssue/>}></Route>
-          <Route exact path="/stockreport" element={<StockReport/>}></Route>
-          <Route exact path="/timmer" element={<Timmer/>}></Route>
+          <Route path="/" element={<Home showDownload={showDownload} setShowDownload={setShowDownload} />}></Route>
+          <Route path="/addfood" element={<Addfood/>} ></Route>
+          <Route path="/updatefood" element={<Updatefood  />} ></Route>
+          <Route path="/scanner" element={<Scanner featchCoin={featchCoin} setpopup={setpopup} />} ></Route>
+          <Route path="/message" element={<Usermsg featchCoin={featchCoin} setpopup={setpopup} />} ></Route>
+          <Route path="/foodreport" element={<Report  />} ></Route>
+          <Route path="/card" element={<AddToCard  />} ></Route>
+          <Route path="/foodreview" element={<FoodReview  />} ></Route>
+          <Route path="/orderhistory" element={<OrderHistory  />} ></Route>
+          <Route path="/stockentry" element={<StockEntry/>}></Route>
+          <Route path="/stockissue" element={<StockIssue/>}></Route>
+          <Route path="/stockreport" element={<StockReport/>}></Route>
+          <Route path="/timmer" element={<Timmer/>}></Route>
         </Routes>
+        </Suspense>
         </div>
         
         {/* </div> */}
