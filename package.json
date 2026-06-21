@@ -5,8 +5,10 @@
   "type": "module",
   "dependencies": {
     "@auth0/auth0-react": "^2.19.0",
+    "@fortawesome/fontawesome-free": "^7.3.0",
     "@yudiel/react-qr-scanner": "^2.6.0",
     "axios": "^1.18.1",
+    "bootstrap": "^5.3.8",
     "html2pdf.js": "^0.14.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
