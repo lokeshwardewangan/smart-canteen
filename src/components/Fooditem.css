@@ -84,9 +84,13 @@
   margin: 0;
   transition: background 0.15s ease;
 }
-.qty-stepper .Btn:hover {
-  background: var(--primary-light);
-  color: var(--primary-dark);
+.qty-stepper .Btn:hover,
+#minusBtn:hover,
+#addBtn:hover {
+  background: var(--primary);
+  background-color: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
   transform: none;
 }
 .qty-stepper #number {

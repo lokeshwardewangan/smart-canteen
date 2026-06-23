@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.25rem;
-  margin-bottom: 85px;
+  margin-bottom: 1.5rem;
 }
 .cart-container {
   width: 100%;

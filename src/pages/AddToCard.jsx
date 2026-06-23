@@ -133,10 +133,10 @@ export default function () {
           })
         }
       </div>
-      {/* footer */}
-      <div className='payment-calculation' style={{ position: "fixed", bottom: 0, right: 0, left: 0, width: "100%", backgroundColor: "white", paddingBottom: "5px" }} >
-        <span className='pay-total' >Total : <span class="cart-values" >{total}</span> </span>
-        <button className='pay-button ' style={{ backgroundColor: `${total < 1 && "rgb(53 163 53)"}` }} onClick={() => total > 0 && conformation()} >pay <i class="fa-brands fa-amazon-pay"></i> </button>
+      {/* payment summary */}
+      <div className='payment-calculation'>
+        <span className='pay-total'>Total : <span className="cart-values">{total}</span> </span>
+        <button className='pay-button' style={{ backgroundColor: total < 1 ? "rgb(53 163 53)" : undefined }} onClick={() => total > 0 && conformation()}>pay <i className="fa-brands fa-amazon-pay"></i></button>
       </div>
     </div>
   )
