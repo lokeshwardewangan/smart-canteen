@@ -104,6 +104,7 @@ export default function Navbar({ coin }) {
 </nav>  */}
 
       <nav id="navbar" >
+        <div className="navbar-inner">
 
         <div id="header">
           <div id="logo" className="head">
@@ -179,6 +180,7 @@ export default function Navbar({ coin }) {
           }
 
 
+        </div>
         </div>
       </nav>
 

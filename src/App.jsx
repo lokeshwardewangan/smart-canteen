@@ -2,6 +2,7 @@ import React, { useEffect, lazy, Suspense } from "react";
 import {BrowserRouter as Router,Routes,Route,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import FoodState from "./context/foods/FoodState";
 import { useState } from "react";
 import axios from "axios";
@@ -80,6 +81,7 @@ function App() {
 
 
      {/* <div className="container"> */}
+     <main className="app-main">
         <Suspense fallback={<div style={{padding:"40px",textAlign:"center"}}>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home showDownload={showDownload} setShowDownload={setShowDownload} />}></Route>
@@ -97,6 +99,8 @@ function App() {
           <Route path="/timmer" element={<Timmer/>}></Route>
         </Routes>
         </Suspense>
+     </main>
+        <Footer />
         </div>
         
         {/* </div> */}
